@@ -221,7 +221,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Start full stack
-        run: docker-compose up --build -d
+        run: docker compose up --build -d
 
       - name: Wait for frontend to be healthy
         run: |
@@ -256,7 +256,7 @@ jobs:
 
       - name: Tear down stack
         if: always()
-        run: docker-compose down -v
+        run: docker compose down -v
 
   # ─────────────────────────────────────────────
   # STAGE 6: DEPLOY
@@ -290,7 +290,7 @@ jobs:
             cd ~/hng14-stage2-devops
             git pull origin main
             chmod +x ~/deploy/scripts/rolling-deploy.sh
-            docker-compose pull
+            docker compose pull
             ~/deploy/scripts/rolling-deploy.sh api   ${{ secrets.DOCKER_IMAGE_API }}:${{ github.sha }}
             ~/deploy/scripts/rolling-deploy.sh worker ${{ secrets.DOCKER_IMAGE_WORKER }}:${{ github.sha }}
             ~/deploy/scripts/rolling-deploy.sh frontend ${{ secrets.DOCKER_IMAGE_FRONTEND }}:${{ github.sha }}
