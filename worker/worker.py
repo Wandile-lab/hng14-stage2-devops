@@ -2,6 +2,7 @@ import time
 import redis
 import os
 
+
 def get_redis():
     for _ in range(10):
         try:
@@ -15,6 +16,8 @@ def get_redis():
         except redis.exceptions.ConnectionError:
             time.sleep(1)
     raise Exception("Redis unavailable after retries")
+
+
 
 r = get_redis()
 
