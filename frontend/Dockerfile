@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+COPY package*.json ./
+RUN npm install --only=production
+
+COPY . .
+
+# Install curl (NOT wget)
+RUN apk add --no-cache curl
+
+RUN chown -R appuser:appgroup /app
+USER appuser
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=5 \
+  CMD curl -f http://localhost:3000/health || exit 1
+
+CMD ["node", "app.js"]
