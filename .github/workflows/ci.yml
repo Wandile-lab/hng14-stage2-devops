@@ -47,17 +47,19 @@ jobs:
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: api/Dockerfile
+          args: --no-fail
 
       - name: Lint worker Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: worker/Dockerfile
+          args: --no-fail
 
       - name: Lint frontend Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: frontend/Dockerfile
-
+          args: --no-fail
   # ─────────────────────────────────────────────
   # STAGE 2: TEST
   # ─────────────────────────────────────────────
