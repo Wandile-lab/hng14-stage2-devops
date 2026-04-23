@@ -15,11 +15,13 @@ def get_redis():
             return client
         except redis.exceptions.ConnectionError:
             time.sleep(1)
+
     raise Exception("Redis unavailable after retries")
 
 
 
 r = get_redis()
+
 
 while True:
     job = r.rpop("jobs")
