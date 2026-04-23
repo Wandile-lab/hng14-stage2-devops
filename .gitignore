@@ -7,3 +7,5 @@ coverage.xml
 *.tar
 .env
 api/.env
+.env
+api/.env
