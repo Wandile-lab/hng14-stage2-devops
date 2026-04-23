@@ -5,3 +5,5 @@ node_modules/
 coverage.xml
 .coverage
 *.tar
+.env
+api/.env
