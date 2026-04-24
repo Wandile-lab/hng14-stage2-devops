@@ -12,7 +12,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN id -u appuser || useradd -m appuser
+RUN useradd --no-log-init -r -u 1001 appuser
+
 
 COPY --from=builder /root/.local /home/appuser/.local
 COPY . .
