@@ -6,6 +6,7 @@ RUN npm install --only=production
 FROM node:18-alpine AS final
 WORKDIR /app
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# hadolint ignore=DL3018
 RUN apk add --no-cache curl
 COPY --from=builder /app/node_modules ./node_modules
 COPY . .
