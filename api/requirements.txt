@@ -1,4 +1,6 @@
-pytest
 fastapi
 uvicorn
 redis
+httpx
+pytest
+pytest-cov
